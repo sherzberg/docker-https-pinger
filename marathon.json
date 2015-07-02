@@ -1,0 +1,43 @@
+{
+    "container": {
+        "docker": {
+            "image": "default/docker-https-pinger"
+        },
+        "type": "DOCKER",
+        "volumes": [
+            {
+                "containerPath": "/etc/ssl/certs",
+                "hostPath": "/etc/ssl/certs",
+                "mode": "RO"
+            }, {
+                "containerPath": "/usr/local/share/ca-certificates",
+                "hostPath": "/usr/local/share/ca-certificates",
+                "mode": "RO"
+            }, {
+                "containerPath": "/var/lib/boot2docker/certs",
+                "hostPath": "/var/lib/boot2docker/certs",
+                "mode": "RO"
+            }
+        ]
+    },
+    "cpus": 0.1,
+    "env": {
+        "PING_URL": "https://vault.dev.banno.com:8200/v1/sys/health"
+    },
+    "health": {
+        "gracePeriodSeconds": 30,
+        "intervalSeconds": 60,
+        "maxConsecutiveFailures": 0,
+        "path": "/health",
+        "portIndex": 0,
+        "protocol": "HTTP",
+        "timeoutSeconds": 30
+    },
+    "id": "pinger",
+    "instances": 1,
+    "mem": 256,
+    "ports": [
+        0
+    ],
+    "uris": []
+}
